@@ -1,0 +1,5 @@
+include ':app'
+include ':app-phone'
+include ':app-tv'
+include ':app-support'
+rootProject.name = "Bluetooth5"

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:theme="@style/RtkAppTheme.AppBarOverlay">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            style="@style/AwesomeToolBar"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:titleTextAppearance="@style/ActionBar.TitleText">
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.slidingpanelayout.widget.SlidingPaneLayout
+        android:id="@+id/slidePanelLayout"
+        app:layout_constraintTop_toBottomOf="@+id/appbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <fragment
+            android:id="@+id/fragment_function"
+            android:name="com.realsil.apps.bluetooth5.phone.longrange.LongRangeClientSettingsFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.realsil.sdk.support.logger.LogView
+                android:id="@+id/logView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/bottomBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/margin_medium"
+                android:paddingEnd="@dimen/margin_medium"
+                app:layout_constraintTop_toBottomOf="@+id/logView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnConnect"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_connect" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDisconnect"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_disconnect" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.slidingpanelayout.widget.SlidingPaneLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

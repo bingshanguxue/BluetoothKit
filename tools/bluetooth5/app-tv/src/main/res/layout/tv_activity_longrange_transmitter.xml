@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:theme="@style/RtkAppTheme.AppBarOverlay">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            style="@style/AwesomeToolBar"
+            android:background="@null"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:titleTextAppearance="@style/ActionBar.TitleText">
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.realsil.sdk.support.logger.LogView
+        android:id="@+id/logView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clickable="true"
+        android:focusable="false"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar" />
+
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/margin_medium"
+        android:paddingEnd="@dimen/margin_medium"
+        app:layout_constraintTop_toBottomOf="@+id/logView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEnableAdv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_start_adv" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStopAdv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_stop_adv" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStartServer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:text="@string/button_start_server" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStartTx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:text="@string/button_start_tx" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStopTx"
+            android:enabled="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:text="@string/button_stop_tx" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

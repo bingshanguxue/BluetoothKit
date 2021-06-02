@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="Settings">
+
+    <androidx.preference.PreferenceCategory
+        android:title="@string/pref_categorytitle_adv_set_parameters"
+        app:iconSpaceReserved="false">
+
+
+        <com.realsil.sdk.support.settings.RtkListPreference
+            android:entries="@array/adv_set_primary_phy_entries"
+            android:entryValues="@array/adv_set_primary_phy_values"
+            android:key="rtk_adv_set_primary_phy"
+            android:summary="{v}"
+            android:title="@string/pref_title_adv_set_primary_hy"
+            app:iconSpaceReserved="false" />
+
+        <com.realsil.sdk.support.settings.RtkListPreference
+            android:entries="@array/adv_set_secondary_phy_entries"
+            android:entryValues="@array/adv_set_secondary_phy_values"
+            android:key="rtk_adv_set_secondary_phy"
+            android:summary="{v}"
+            android:title="@string/pref_title_adv_set_secondary_hy"
+            app:iconSpaceReserved="false" />
+
+        <com.realsil.sdk.support.settings.RtkListPreference
+            android:entries="@array/adv_set_interval_entries"
+            android:entryValues="@array/adv_set_interval_values"
+            android:key="rtk_adv_set_interval"
+            android:summary="{v}"
+            android:title="@string/pref_title_adv_set_interval"
+            app:iconSpaceReserved="false" />
+
+        <com.realsil.sdk.support.settings.RtkListPreference
+            android:entries="@array/adv_set_tx_power_level_entries"
+            android:entryValues="@array/adv_set_tx_power_level_values"
+            android:key="rtk_adv_set_tx_power_level"
+            android:summary="{v}"
+            android:title="@string/pref_title_adv_set_tx_power_level"
+            app:iconSpaceReserved="false" />
+
+    </androidx.preference.PreferenceCategory>
+
+    <androidx.preference.PreferenceCategory
+        android:title="@string/pref_categorytitle_advertising_data"
+        app:iconSpaceReserved="false">
+
+
+        <androidx.preference.SwitchPreference
+            android:key="switch_adv_advertising_device_name"
+            android:summary="是否打开我呢？"
+            android:switchTextOff="@string/rtk_switchTextOff"
+            android:switchTextOn="@string/rtk_switchTextOn"
+            app:iconSpaceReserved="false"
+            android:title="@string/pref_title_scan_response_device_name"/>
+
+        <androidx.preference.SwitchPreference
+            android:key="switch_adv_advertising_tx_power_level"
+            android:summary="是否打开我呢？"
+            android:switchTextOff="@string/rtk_switchTextOff"
+            android:switchTextOn="@string/rtk_switchTextOn"
+            app:iconSpaceReserved="false"
+            android:title="@string/pref_title_scan_response_tx_power_level"/>
+
+
+    </androidx.preference.PreferenceCategory>
+
+    <androidx.preference.PreferenceCategory
+        android:title="@string/pref_categorytitle_scan_response_data"
+        app:iconSpaceReserved="false">
+
+
+        <androidx.preference.SwitchPreference
+            android:key="switch_adv_scan_response_device_name"
+            android:summary="是否打开我呢？"
+            android:switchTextOff="@string/rtk_switchTextOff"
+            android:switchTextOn="@string/rtk_switchTextOn"
+            app:iconSpaceReserved="false"
+            android:title="@string/pref_title_scan_response_device_name"/>
+
+        <androidx.preference.SwitchPreference
+            android:key="switch_adv_scan_response_tx_power_level"
+            android:summary="是否打开我呢？"
+            android:switchTextOff="@string/rtk_switchTextOff"
+            android:switchTextOn="@string/rtk_switchTextOn"
+            app:iconSpaceReserved="false"
+            android:title="@string/pref_title_scan_response_tx_power_level"/>
+
+
+    </androidx.preference.PreferenceCategory>
+
+
+
+    <!--        <SwitchPreference-->
+    <!--            app:iconSpaceReserved="false"-->
+    <!--            android:key="switch_dfu_upload_file_prompt"-->
+    <!--            android:summary="是否打开我呢？"-->
+    <!--            android:summaryOff="@string/pref_title_dfu_upload_file_prompt_summary_off"-->
+    <!--            android:summaryOn="@string/pref_title_dfu_upload_file_prompt_summary_on"-->
+    <!--            android:switchTextOff="@string/rtk_switchTextOff"-->
+    <!--            android:switchTextOn="@string/rtk_switchTextOn"-->
+    <!--            android:title="@string/pref_title_dfu_upload_file_prompt"/>-->
+
+    <!--        <SwitchPreference-->
+    <!--            app:iconSpaceReserved="false"-->
+    <!--            android:key="switch_dfu_success_hint"-->
+    <!--            android:summary="是否打开我呢？"-->
+    <!--            android:summaryOff="@string/rtk_summaryOff"-->
+    <!--            android:summaryOn="@string/rtk_summaryOn"-->
+    <!--            android:switchTextOff="@string/rtk_switchTextOff"-->
+    <!--            android:switchTextOn="@string/rtk_switchTextOn"-->
+    <!--            android:title="@string/pref_title_dfu_success_hint"/>-->
+
+    <!--        <SwitchPreference-->
+    <!--            app:iconSpaceReserved="false"-->
+    <!--            android:key="switch_dfu_backlink"-->
+    <!--            android:summary="@string/pref_title_dfu_bank_link_summary"-->
+    <!--            android:switchTextOff="@string/rtk_switchTextOff"-->
+    <!--            android:switchTextOn="@string/rtk_switchTextOn"-->
+    <!--            android:title="@string/pref_title_dfu_bank_link"/>-->
+
+    <!--        &lt;!&ndash;<SwitchPreference&ndash;&gt;-->
+    <!--            &lt;!&ndash;android:key="switch_dfu_fixed_image_file"&ndash;&gt;-->
+    <!--            &lt;!&ndash;android:summaryOff="@string/pref_title_dfu_image_file_summary_off"&ndash;&gt;-->
+    <!--            &lt;!&ndash;android:summaryOn="@string/pref_title_dfu_image_file_summary_on"&ndash;&gt;-->
+    <!--            &lt;!&ndash;android:switchTextOff="@string/rtk_switchTextOff"&ndash;&gt;-->
+    <!--            &lt;!&ndash;android:switchTextOn="@string/rtk_switchTextOn"&ndash;&gt;-->
+    <!--            &lt;!&ndash;android:title="@string/pref_title_dfu_image_file"/>&ndash;&gt;-->
+
+
+</androidx.preference.PreferenceScreen>

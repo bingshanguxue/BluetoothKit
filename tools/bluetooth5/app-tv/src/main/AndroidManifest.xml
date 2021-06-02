@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.realsil.apps.bluetooth5.tv">
+    <!--declare that your app is available to BLE-capable devices only-->
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true"/>
+
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <!--    <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />-->
+
+    <!-- 避免部分Android6.0手机无法scan到设备 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application>
+        <activity android:name="com.realsil.apps.bluetooth5.tv.SplashActivity"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.realsil.apps.bluetooth5.tv.MainActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name="com.realsil.apps.bluetooth5.tv.longrange.LongRangeServerActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name="com.realsil.apps.bluetooth5.tv.longrange.LongRangeClientActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name="com.realsil.apps.bluetooth5.tv.extendedadv.AdvertiserActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name="com.realsil.apps.bluetooth5.tv.extendedadv.AdvReceiverActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name="com.realsil.apps.bluetooth5.tv.createbond.CreateBondActivity"
+            android:screenOrientation="landscape"/>
+
+    </application>
+
+</manifest>

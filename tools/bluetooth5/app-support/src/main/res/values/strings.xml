@@ -1,0 +1,93 @@
+<resources>
+    <string name="app_name">Bluetooth5</string>
+    <string name="title_longrange">Long Range Data Transfer</string>
+    <string name="subtitle_longrange">Long Range</string>
+    <string name="button_longrange_transmitter">Transmitter</string>
+    <string name="button_longrange_receiver">Receiver</string>
+    <string name="pref_title_longrange_loopback">Loopback</string>
+
+    <string name="text_connectable">Connectable</string>
+    <string name="text_scannable">Scannable</string>
+
+    <string name="title_extended_advertising">Extended Advertising</string>
+    <string name="subtitle_extended_advertising">Extended Advertising</string>
+    <string name="button_extended_advertising_advertiser">Advertiser</string>
+    <string name="button_extended_advertising_receiver">Receiver</string>
+    <string name="pref_categorytitle_adv_set_parameters">Advertising Set Parameters</string>
+    <string name="pref_title_adv_set_primary_hy">Primary Phy</string>
+    <string-array name="adv_set_primary_phy_entries">
+        <item>PHY_LE_1M</item>
+        <item>PHY_LE_CODED</item>
+    </string-array>
+    <string-array name="adv_set_primary_phy_values">
+        <item>1</item>
+        <item>3</item>
+    </string-array>
+    <string name="pref_title_adv_set_secondary_hy">Secondary Phy</string>
+    <string-array name="adv_set_secondary_phy_entries">
+        <item>PHY_LE_1M</item>
+        <item>PHY_LE_2M</item>
+        <item>PHY_LE_CODED</item>
+    </string-array>
+    <string-array name="adv_set_secondary_phy_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string name="pref_title_adv_set_interval">Interval</string>
+    <string-array name="adv_set_interval_entries">
+        <item>INTERVAL_LOW (100ms)</item>
+        <item>INTERVAL_MEDIUM (250ms)</item>
+        <item>INTERVAL_HIGH (1s)</item>
+    </string-array>
+    <string-array name="adv_set_interval_values">
+        <item>160</item>
+        <item>400</item>
+        <item>1600</item>
+    </string-array>
+    <string name="pref_title_adv_set_tx_power_level">TxPowerLevel</string>
+    <string-array name="adv_set_tx_power_level_entries">
+        <item>TX_POWER_ULTRA_LOW</item>
+        <item>TX_POWER_LOW</item>
+        <item>TX_POWER_MEDIUM</item>
+        <item>TX_POWER_HIGH</item>
+    </string-array>
+    <string-array name="adv_set_tx_power_level_values">
+        <item>-21</item>
+        <item>-15</item>
+        <item>-7</item>
+        <item>1</item>
+    </string-array>
+    <string name="pref_categorytitle_scan_response_data">Scan Response Data</string>
+    <string name="pref_title_scan_response_device_name">Device Name</string>
+    <string name="pref_title_scan_response_tx_power_level">TX Power Level</string>
+    <string name="pref_categorytitle_advertising_data">Advertising Data</string>
+    <string name="pref_categorytitle_scan_parameters">Scan Parameters</string>
+    <string name="pref_categorytitle_longrange_transmission">Long Range Transmission</string>
+
+
+    <string name="title_phy">PHY</string>
+    <string name="button_start_adv">Start Advertising</string>
+    <string name="button_stop_adv">Stop Advertising</string>
+    <string name="button_enable_adv">Enable Advertising</string>
+    <string name="button_disalbe_adv">Disable Advertising</string>
+    <string name="button_set_advertising_data">Set Advertising Data</string>
+    <string name="button_set_scan_response_data">Set Scan Response Data</string>
+
+    <string name="button_enable_periodic_adv">Enable Periodic Advertising</string>
+    <string name="button_setPeriodicAdvertisingParameters">Set Periodic Advertising Parameters</string>
+    <string name="button_start_scan">Start Scan</string>
+    <string name="button_stop_scan">Stop Scan</string>
+    <string name="button_start_tx">Start TX</string>
+    <string name="button_stop_tx">Stop TX</string>
+
+    <string name="button_connect">Connect</string>
+    <string name="button_disconnect">Disconnect</string>
+
+    <string name="button_start_server">Start Server</string>
+    <string name="button_create_bond">Create Bond</string>
+    <string name="button_remove_bond">Remove Bond</string>
+    <string name="button_remove_connect">Connect</string>
+    <string name="button_remove_disconnect">Disconnect</string>
+
+</resources>

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".extendedadv.AdvertiserActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/RtkAppTheme.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            style="@style/AwesomeToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@null"
+            app:titleTextAppearance="@style/ActionBar.TitleText">
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/margin_medium">
+
+            <com.realsil.sdk.support.logger.LogView
+                android:id="@+id/logView"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/bottomBar3"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchAdv"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bottomBar3">
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/cbxConnectable"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/text_connectable" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/cbxScannable"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/text_scannable" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/advertiseDataPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/sliderAdvDataLength"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:stepSize="1"
+                    android:valueFrom="10"
+                    android:valueTo="255"
+                    app:labelBehavior="withinBounds"
+                    app:layout_constraintEnd_toStartOf="@+id/tvAdvDataLength"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvAdvDataLength"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/margin_small"
+                    android:paddingEnd="@dimen/margin_small"
+                    app:layout_constraintBottom_toBottomOf="@+id/sliderAdvDataLength"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/sliderAdvDataLength"
+                    app:layout_constraintTop_toTopOf="@+id/sliderAdvDataLength" />
+
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/cbxAdvDeviceName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pref_title_scan_response_device_name"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/cbxAdvTxPowerLevel"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sliderAdvDataLength" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/cbxAdvTxPowerLevel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pref_title_adv_set_tx_power_level"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cbxAdvDeviceName"
+                    app:layout_constraintTop_toBottomOf="@+id/sliderAdvDataLength" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bottomBar3">
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSetAdvertisingData"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="@string/button_set_advertising_data" />
+
+                <LinearLayout
+                    android:id="@+id/bottomBar2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bottomBar3">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnEnableAdv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        android:text="@string/button_enable_adv" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnDisableAdv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        android:layout_weight="1"
+                        android:enabled="false"
+                        android:text="@string/button_disalbe_adv" />
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSetScanResponseData"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="@string/button_set_scan_response_data"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sliderScanResponeDataLength" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/periodicPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/bottomBar2"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/logView">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEnablePeriodicAdv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:enabled="false"
+                    android:text="@string/button_enable_periodic_adv" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSetPeriodicAdvertisingParameters"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_weight="1"
+                    android:enabled="false"
+                    android:text="@string/button_setPeriodicAdvertisingParameters" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

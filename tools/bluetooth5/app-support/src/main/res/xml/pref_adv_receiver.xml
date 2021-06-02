@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:title="Settings">
+
+    <androidx.preference.PreferenceCategory
+        app:iconSpaceReserved="false"
+        android:title="@string/pref_categorytitle_scan_parameters">
+
+
+    <EditTextPreference
+        android:dialogTitle="@string/rtk_pref_title_bt_scan_filter_name"
+        android:inputType="text"
+        android:key="rtk_edittext_adv_scan_filter_name"
+        android:summary="{v}"
+        app:iconSpaceReserved="false"
+        android:title="@string/rtk_pref_title_bt_scan_filter_name"/>
+    </androidx.preference.PreferenceCategory>
+
+<!--    <androidx.preference.PreferenceCategory-->
+<!--        app:iconSpaceReserved="false"-->
+<!--        android:title="@string/pref_title_function_test">-->
+
+<!--        <androidx.preference.SwitchPreference-->
+<!--            android:key="switch_dfu_work_mode_prompt"-->
+<!--            android:summary="是否打开我呢？"-->
+<!--            android:summaryOff="@string/pref_title_dfu_workmode_prompt_summary_off"-->
+<!--            android:summaryOn="@string/pref_title_dfu_workmode_prompt_summary_on"-->
+<!--            android:switchTextOff="@string/rtk_switchTextOff"-->
+<!--            android:switchTextOn="@string/rtk_switchTextOn"-->
+<!--            app:iconSpaceReserved="false"-->
+<!--            android:title="@string/pref_title_dfu_workmode_prompt"/>-->
+
+<!--        <SwitchPreference-->
+<!--            app:iconSpaceReserved="false"-->
+<!--            android:key="switch_dfu_upload_file_prompt"-->
+<!--            android:summary="是否打开我呢？"-->
+<!--            android:summaryOff="@string/pref_title_dfu_upload_file_prompt_summary_off"-->
+<!--            android:summaryOn="@string/pref_title_dfu_upload_file_prompt_summary_on"-->
+<!--            android:switchTextOff="@string/rtk_switchTextOff"-->
+<!--            android:switchTextOn="@string/rtk_switchTextOn"-->
+<!--            android:title="@string/pref_title_dfu_upload_file_prompt"/>-->
+
+<!--        <SwitchPreference-->
+<!--            app:iconSpaceReserved="false"-->
+<!--            android:key="switch_dfu_success_hint"-->
+<!--            android:summary="是否打开我呢？"-->
+<!--            android:summaryOff="@string/rtk_summaryOff"-->
+<!--            android:summaryOn="@string/rtk_summaryOn"-->
+<!--            android:switchTextOff="@string/rtk_switchTextOff"-->
+<!--            android:switchTextOn="@string/rtk_switchTextOn"-->
+<!--            android:title="@string/pref_title_dfu_success_hint"/>-->
+
+<!--        <SwitchPreference-->
+<!--            app:iconSpaceReserved="false"-->
+<!--            android:key="switch_dfu_backlink"-->
+<!--            android:summary="@string/pref_title_dfu_bank_link_summary"-->
+<!--            android:switchTextOff="@string/rtk_switchTextOff"-->
+<!--            android:switchTextOn="@string/rtk_switchTextOn"-->
+<!--            android:title="@string/pref_title_dfu_bank_link"/>-->
+
+<!--        &lt;!&ndash;<SwitchPreference&ndash;&gt;-->
+<!--            &lt;!&ndash;android:key="switch_dfu_fixed_image_file"&ndash;&gt;-->
+<!--            &lt;!&ndash;android:summaryOff="@string/pref_title_dfu_image_file_summary_off"&ndash;&gt;-->
+<!--            &lt;!&ndash;android:summaryOn="@string/pref_title_dfu_image_file_summary_on"&ndash;&gt;-->
+<!--            &lt;!&ndash;android:switchTextOff="@string/rtk_switchTextOff"&ndash;&gt;-->
+<!--            &lt;!&ndash;android:switchTextOn="@string/rtk_switchTextOn"&ndash;&gt;-->
+<!--            &lt;!&ndash;android:title="@string/pref_title_dfu_image_file"/>&ndash;&gt;-->
+
+<!--    </androidx.preference.PreferenceCategory>-->
+
+<!--    <com.realsil.sdk.support.settings.RtkListPreference-->
+<!--        app:iconSpaceReserved="false"-->
+<!--        android:entries="@array/dfu_file_location_entries"-->
+<!--        android:entryValues="@array/dfu_file_location_values"-->
+<!--        android:key="rtk_file_location"-->
+<!--        android:summary="{v}"-->
+<!--        android:title="@string/pref_title_dfu_file_location"/>-->
+
+<!--    <com.realsil.sdk.support.settings.RtkListPreference-->
+<!--        app:iconSpaceReserved="false"-->
+<!--        android:entries="@array/dfu_progress_type_entries"-->
+<!--        android:entryValues="@array/dfu_progress_type_values"-->
+<!--        android:key="rtk_progress_type"-->
+<!--        android:summary="{v}"-->
+<!--        android:title="@string/pref_title_dfu_progress_type"/>-->
+
+<!--    <com.realsil.sdk.support.settings.RtkListPreference-->
+<!--        app:iconSpaceReserved="false"-->
+<!--        android:entries="@array/rtk_select_file_type_entries"-->
+<!--        android:entryValues="@array/rtk_select_file_type_values"-->
+<!--        android:key="rtk_select_file_type"-->
+<!--        android:summary="{v}"-->
+<!--        android:title="@string/pref_title_select_file_type"/>-->
+
+</androidx.preference.PreferenceScreen>

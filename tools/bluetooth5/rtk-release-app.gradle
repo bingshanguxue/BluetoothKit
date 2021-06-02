@@ -1,0 +1,123 @@
+apply plugin: 'com.android.application'
+
+apply from: '../rtk-release.gradle'
+
+
+def groupId = project.PUBLISH_GROUP_ID
+def artifactId = project.PUBLISH_ARTIFACT_ID
+def version = project.PUBLISH_VERSION
+
+def localQcReleaseDest = "${buildDir}/outputs/apk/customerRealtekPhone/release"
+def publicReleaseDest = "../../bin"
+
+android {
+    signingConfigs {
+        debug {
+        }
+        release {
+        }
+    }
+
+    buildTypes {
+        debug {
+//            buildConfigField "boolean", "LOG_DEBUG", "true"//是否输出LOG信息
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        release {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+
+    File propFile = file('../signing.properties')
+    if (propFile.exists()) {
+        Properties props = new Properties()
+        props.load(new FileInputStream(propFile))
+        if (props.containsKey('STORE_FILE') && props.containsKey('STORE_PASSWORD') &&
+                props.containsKey('KEY_ALIAS') && props.containsKey('KEY_PASSWORD')) {
+            android.signingConfigs.release.storeFile = file(props['STORE_FILE'])
+            android.signingConfigs.release.storePassword = props['STORE_PASSWORD']
+            android.signingConfigs.release.keyAlias = props['KEY_ALIAS']
+            android.signingConfigs.release.keyPassword = props['KEY_PASSWORD']
+        } else {
+            println "props invalid!"
+            android.buildTypes.release.signingConfig = null
+        }
+    } else {
+        println "signing.properties not exist!"
+        android.buildTypes.release.signingConfig = null
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                if (variant.buildType.name == "release") {
+//                    if (variant.flavorName.contains("hotfix")) {
+//
+//                    } else {
+//                        outputFileName = "${archivesBaseName}_V${defaultConfig.versionName}" +
+//                                ".apk"
+//                    }
+                    //_${variant.flavorName}
+                    outputFileName = "${archivesBaseName}_V${defaultConfig.versionName}.${defaultConfig.versionCode}_${variant.flavorName}" +
+                            ".apk"
+                } else {
+                    outputFileName = "${archivesBaseName}_V${defaultConfig.versionName}.${defaultConfig.versionCode}_${releaseTime()}" +
+                            ".apk"
+                }
+            }
+        }
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs' //this way we can find the .aar file in libs folder
+        }
+    }
+    android {
+        lintOptions {
+            checkReleaseBuilds false
+            // Or, if you prefer, you can continue to check for errors in release builds,
+            // but continue the build even when errors are found:
+            abortOnError false
+            // The demo app does not have translations.
+            disable 'MissingTranslation'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+//    kotlinOptions {
+//        jvmTarget = '1.8'
+//    }
+}
+
+task copyApk(type: Copy) {
+    from(localQcReleaseDest) {
+        exclude '**/*unsigned.apk', '**/*unaligned.apk', 'output.json'
+        //include outputFileName
+    }
+    into publicReleaseDest
+    doLast {
+        println "Release ${version} can be found at ${publicReleaseDest}/"
+    }
+}
+
+
+task apkRelease(dependsOn: build, description: 'Release Apk Task') {
+    doLast {
+//        println "Release ${version} can be found at ${localAarReleaseDest}/"
+    }
+}
+
+apkRelease.dependsOn(copyApk)
+//apkRelease.dependsOn(build)
