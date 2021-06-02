@@ -9,6 +9,7 @@
     <string name="text_connectable">Connectable</string>
     <string name="text_scannable">Scannable</string>
 
+    <string name="text_adv_extension">Advertising Extension</string>
     <string name="title_extended_advertising">Extended Advertising</string>
     <string name="subtitle_extended_advertising">Extended Advertising</string>
     <string name="button_extended_advertising_advertiser">Advertiser</string>

@@ -35,17 +35,51 @@ class AdvertiserActivity : GattServerActivity() {
             if (!buttonView.isPressed) {
                 return@setOnCheckedChangeListener
             }
-            if (isChecked) {
-                cbxScannable.isChecked = false
+            if (cbxAdvExtension.isChecked) {
+                if (isChecked) {
+                    cbxScannable.isChecked = false
+                    cbxScannable.isEnabled = false
+                } else {
+                    cbxScannable.isEnabled = true
+                }
+            } else {
+                if (isChecked) {
+                    cbxScannable.isChecked = true
+                    cbxScannable.isEnabled = false
+                } else {
+                    cbxScannable.isChecked = false
+                    cbxScannable.isEnabled = true
+                }
             }
+
             refresh()
         }
         cbxScannable.setOnCheckedChangeListener { buttonView, isChecked ->
             if (!buttonView.isPressed) {
                 return@setOnCheckedChangeListener
             }
+            if (cbxAdvExtension.isChecked) {
+                if (isChecked) {
+                    cbxConnectable.isChecked = false
+                    cbxConnectable.isEnabled = false
+                } else {
+                    cbxConnectable.isEnabled = true
+                }
+            } else {
+                cbxConnectable.isEnabled = true
+            }
+            refresh()
+        }
+        cbxAdvExtension.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (!buttonView.isPressed) {
+                return@setOnCheckedChangeListener
+            }
             if (isChecked) {
-                cbxConnectable.isChecked = false
+                if (cbxConnectable.isChecked) {
+                    cbxScannable.isChecked = false
+                }
+            } else {
+//                cbxConnectable.isEnabled = true
             }
             refresh()
         }
@@ -136,6 +170,22 @@ class AdvertiserActivity : GattServerActivity() {
         }
     }
 
+    fun generateLegacyAdvertiseData(): AdvertiseData? {
+        return (AdvertiseData.Builder())
+            .setIncludeDeviceName(cbxAdvDeviceName.isChecked)
+            .setIncludeTxPowerLevel(cbxAdvTxPowerLevel.isChecked)
+            .addServiceUuid(ParcelUuid(LongRangeProfile.DATA_TRANSMIT_SERVICE))
+//            .addServiceData(
+//                ParcelUuid(LongRangeProfile.DATA_TRANSMIT_SERVICE),
+//                DataProvider.generateStreamWithSeq(
+//                    0xFFFF,
+//                    0,
+//                    sliderAdvDataLength.value.roundToLong()
+//                )
+//            )
+            .build()
+    }
+
     fun generateAdvertiseData(): AdvertiseData? {
         return (AdvertiseData.Builder())
             .setIncludeDeviceName(cbxAdvDeviceName.isChecked)
@@ -154,6 +204,76 @@ class AdvertiserActivity : GattServerActivity() {
 
     override fun startAdvertising() {
         super.startAdvertising()
+        if (cbxAdvExtension.isChecked) {
+            startExtendAdv()
+        } else {
+            startLegacyAdv()
+        }
+    }
+    fun startLegacyAdv() {
+        val parameters = (AdvertisingSetParameters.Builder())
+            .setLegacyMode(true)
+            .setScannable(cbxScannable.isChecked)
+            .setConnectable(cbxConnectable.isChecked)
+            .setInterval(AdvSettings.getInstance()!!.advSetInterval)
+            .setTxPowerLevel(AdvSettings.getInstance()!!.advSetTxPowerLevel)
+            .setPrimaryPhy(AdvSettings.getInstance()!!.advSetPrimaryPhy)
+            .setSecondaryPhy(AdvSettings.getInstance()!!.advSetSecondaryPhy)
+//        if (switchPhy.isChecked) {
+//            parameters.setPrimaryPhy(BluetoothDevice.PHY_LE_CODED)
+//                .setSecondaryPhy(BluetoothDevice.PHY_LE_2M)
+//        }
+
+        // You should be able to fit large amounts of data up to maxDataLength. This goes up to 1650 bytes. For legacy advertising this would not work
+        // 1123456789ABCDEF2123456789ABCDEF3123456789ABCDEF4123456789ABCDEF5123456789ABCDEF6123456789ABCDEF
+        var advertiseData: AdvertiseData? = null
+
+//        if (cbxConnectable.isChecked) {
+        advertiseData = (AdvertiseData.Builder())
+            .setIncludeDeviceName(cbxAdvDeviceName.isChecked)
+            .setIncludeTxPowerLevel(cbxAdvTxPowerLevel.isChecked)
+            .addServiceUuid(ParcelUuid(LongRangeProfile.DATA_TRANSMIT_SERVICE))
+//            .addServiceData(
+//                ParcelUuid(LongRangeProfile.DATA_TRANSMIT_SERVICE),
+//                DataProvider.generateStreamWithSeq(
+//                    0xFFFF,
+//                    0,
+//                    sliderAdvDataLength.value.roundToLong()
+//                )
+//            )
+            .build()
+//        }
+
+        var advertiseDataTotalBytes = Utils.totalBytes(mBluetoothAdapter, advertiseData, false)
+        ZLogger.v("totalBytes of advertiseData is $advertiseDataTotalBytes")
+
+//        "222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
+//            .toByteArray()
+        var scanResponseData: AdvertiseData? = null
+        if (cbxScannable.isChecked) {
+            scanResponseData =
+                AdvertiseData.Builder()
+                    .setIncludeDeviceName(cbxAdvDeviceName.isChecked)
+                    .setIncludeTxPowerLevel(cbxAdvTxPowerLevel.isChecked)
+                    .addServiceUuid(ParcelUuid.fromString("00008fdb-2222-1000-8000-00805f9b34fb"))
+//                    .addServiceData(
+//                        ParcelUuid.fromString("00008fdb-2222-1000-8000-00805f9b34fb"),
+//                        DataProvider.generateStreamWithSeq(
+//                            0xFFFF,
+//                            0,
+//                            sliderAdvDataLength.value.roundToLong()
+//                        )
+//                    )
+                    .build()
+        }
+        var scanResponseDataTotalBytes = Utils.totalBytes(mBluetoothAdapter, scanResponseData, false)
+        ZLogger.v("totalBytes of scanResponseData is $scanResponseDataTotalBytes")
+
+        startAdvertisingSet(parameters.build(), advertiseData, scanResponseData, null, null)
+    }
+
+
+    fun startExtendAdv() {
         // Check if all features are supported
         if (!mBluetoothAdapter!!.isLe2MPhySupported) {
             logView.w("2M PHY not supported!")
@@ -179,7 +299,7 @@ class AdvertiserActivity : GattServerActivity() {
 
         // You should be able to fit large amounts of data up to maxDataLength. This goes up to 1650 bytes. For legacy advertising this would not work
         // 1123456789ABCDEF2123456789ABCDEF3123456789ABCDEF4123456789ABCDEF5123456789ABCDEF6123456789ABCDEF
-        var advertiseData = generateAdvertiseData()
+        var advertiseData = generateLegacyAdvertiseData()
 
         var scanResponseData: AdvertiseData? = null
         if (cbxScannable.isChecked) {
